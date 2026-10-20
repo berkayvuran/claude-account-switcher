@@ -174,12 +174,14 @@ def render(accounts):
     with ThreadPoolExecutor(len(accounts)) as ex:
         results = list(ex.map(lambda a: usage(a[1]), accounts))
 
-    active_name, active_week = "?", None
+    title, worst = "?", None
     for (name, d), u in zip(accounts, results):
         if d == active:
-            active_name, active_week = name, pct(u.get("seven_day"))
-    title = active_name + (f" {active_week}%" if active_week is not None else "")
-    print(f"{title} | sfimage=sparkle{color(active_week)}")
+            s, w = pct(u.get("five_hour")), pct(u.get("seven_day"))
+            parts = [f"{label} {p}%" for label, p in (("S", s), ("W", w)) if p is not None]
+            title = " · ".join([name] + parts)
+            worst = max([x for x in (s, w) if x is not None], default=None)
+    print(f"{title} | sfimage=sparkle{color(worst)}")
     print("---")
 
     for (name, d), u in zip(accounts, results):

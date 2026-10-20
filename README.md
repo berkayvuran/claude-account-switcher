@@ -3,7 +3,7 @@
 A small macOS menu bar plugin for people who use more than one Claude Code account. It shows each account's plan usage and lets you switch the active account with one click.
 
 ```
-✦ work 18%                                      <- menu bar: active account, weekly usage
+✦ work · S 35% · W 18%                          <- menu bar: active account, session and weekly usage
 ──────────────────────────────────────────
 ✓ work       session 35% · week 18%
       session resets Oct 20 12:39 · week resets Oct 23 02:59
